@@ -1,0 +1,10 @@
+---
+# file: cloud-init/tasks/main.yml
+
+- name: ensure openvpn config script is copied
+  copy:
+    dest: /opt/config-openvpn.sh
+    group: root
+    owner: root
+    src: config-openvpn.sh
+    mode: 0755

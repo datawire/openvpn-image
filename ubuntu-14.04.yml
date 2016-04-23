@@ -1,0 +1,27 @@
+---
+# file: foundation-ubuntu.yml
+
+- hosts: 127.0.0.1
+  connection: local
+  become: yes
+  tasks:
+  - name: ensure OpenVPN server is installed
+    apt:
+      name: openvpn
+      state: latest
+  roles:
+  - role: cloudwatch
+    logs:
+    - file: /var/log/syslog
+      format: "%b %d %H:%M:%S"
+      group_name: openvpn
+      stream_name: "{instance_id}-syslog"
+    - file: /var/log/kern.log
+      format: "%b %d %H:%M:%S"
+      group_name: openvpn
+      stream_name: "{instance_id}-kern.log"
+    - file: /var/log/openvpn.log
+      format: "%a %b %d %H:%M:%S %Y"
+      group_name: openvpn
+      stream_name: "{instance_id}-kern.log"
+  - cloud-init
