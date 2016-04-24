@@ -37,6 +37,6 @@ aws s3 cp s3://${config_bucket}/openvpn/server.conf /etc/openvpn
 
 iptables -t nat -A POSTROUTING -s ${vpn_cidr} -o eth0 -j MASQUERADE
 
-service openvpn@server restart
+service openvpn start
 
 arw_msg "Done!"

@@ -5,8 +5,17 @@
   connection: local
   become: yes
   tasks:
+  - name: ensure OpenVPN repository is enabled
+    apt_repository:
+      repo: deb http://swupdate.openvpn.net/apt trusty main
+      state: present
+  - name: ensure OpenVPN repository key is present
+    apt_key:
+      url: https://swupdate.openvpn.net/repos/repo-public.gpg
+      state: present
   - name: ensure OpenVPN server is installed
     apt:
+      update_cache: yes
       name: openvpn
       state: latest
   roles:
