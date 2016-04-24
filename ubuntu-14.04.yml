@@ -32,5 +32,5 @@
     - file: /var/log/openvpn.log
       format: "%a %b %d %H:%M:%S %Y"
       group_name: openvpn
-      stream_name: "{instance_id}-kern.log"
+      stream_name: "{instance_id}-openvpn.log"
   - cloud-init
