@@ -18,6 +18,12 @@
       update_cache: yes
       name: openvpn
       state: latest
+  - name: allow IPv4 packet forwarding
+    sysctl:
+      name: net.ipv4.ip_forward
+      state: present
+      value: 1
+      reload: yes
   roles:
   - role: cloudwatch
     logs:
